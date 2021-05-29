@@ -1,1 +1,45 @@
-<h1> Welcome </h1>
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Article Analyzer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Bootstrap JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="container-fluid mt-3">
+        <nav class="navbar navbar-light bg-light justify-content-between">
+            <a class="navbar-brand px-5">
+                <img src="{% static 'analyzer/icons/application.png' %}" width="30" height="30"
+                    class="d-inline-block align-top" alt="">
+                <b>Article Analyzer</b>
+            </a>
+            <form class="form-inline px-5" style="width: 83.5%;">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">URL: </span>
+                    </div>
+                    <input type="text" id=urlBar class="form-control" placeholder="" aria-label="Username"
+                        aria-describedby="basic-addon1">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Analyse</button>
+                </div>
+            </form>
+        </nav>
+    </div>
+    <style>
+        #urlBar input[type=text] {
+            width: 430px !important;
+        }
+    </style>
+</body>
+
+</html>
