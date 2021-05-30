@@ -12,34 +12,194 @@
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 </head>
 
 <body>
     <!-- Top Bar -->
     <div class="container-fluid mt-3">
-        <nav class="navbar navbar-light bg-light justify-content-between">
+        <nav class="navbar navbar-light bg-light  justify-content-start">
             <a class="navbar-brand px-5">
                 <img src="{% static 'analyzer/icons/application.png' %}" width="30" height="30"
                     class="d-inline-block align-top" alt="">
                 <b>Article Analyzer</b>
             </a>
-            <form class="form-inline px-5" style="width: 83.5%;">
+            <form class="form pl-5" style="width: 70%;">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">URL: </span>
                     </div>
-                    <input type="text" id=urlBar class="form-control" placeholder="" aria-label="Username"
+                    <input type="text" id=urlBar class="form-control" placeholder="" name="url" aria-label="Username"
                         aria-describedby="basic-addon1">
-                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Analyse</button>
                 </div>
             </form>
+            <button class="btn btn-outline-dark my-2 my-sm-0 mx-2" id="analyseButton" type="submit">Analyse</button>
         </nav>
+
+        <!-- Main Content -->
+
+        <div class="container my-4" id="analysedContent">
+            <div class="row justify-content-md-center">
+                <div class="container my-4" id="analysedContent">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-8">
+                            <div class="card">
+                                <!-- <div class="card-header">
+                                    Word Cloud
+                                </div> -->
+                                <div class="card-body">
+                                    <h5 class="card-title">Word Cloud</h5>
+                                    <p class="card-text" id="myChart">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-lg-4">
+                            <div class="row">
+                                <div class="card" style="height: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Language</h5>
+                                        <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">{{language}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="card"  style="height: 150px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Word Count</h5>
+                                        <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">{{word_count}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justifiy-content-md-center my-2">
+                        <div class="col col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if text %}
+                                    <h5 class="card-title">Key Words/Phrases</h5>
+                                    <p class="card-text">
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                    </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if text %}
+                                    <h5 class="card-title">Sentiment Analysis</h5>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justifiy-content-md-center my-4">
+                        <div class="col col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if text %}
+                                    <h5 class="card-title">Article Text</h5>
+                                    <p class="card-text">{{text}}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <style>
-        #urlBar input[type=text] {
-            width: 430px !important;
-        }
-    </style>
 </body>
+
+<!-- <script>
+    var bar = document.getElementById('urlBar')
+    var button = document.getElementById('analyseButton')
+    var contentDiv = document.getElementById('analysedContent')
+
+    button.onclick = function () {
+        queryValue = bar.value
+        console.log(queryValue)
+
+        url = "{% url 'result' %}" + "?url=" + queryValue
+
+        var ajaxReq = new XMLHttpRequest()
+        ajaxReq.open('GET', url, 'FALSE')
+        ajaxReq.send()
+        ajaxReq.onreadystatechange = function () {
+            if (ajaxReq.readyState == 4 && ajaxReq.status == 200) {
+                contentDiv.innerHTML = ajaxReq.responseText
+            }
+        }
+    }
+</script> -->
+
+<!-- Word Cloud JS -->
+<script>
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "b55b025e438fa8a98e32482b5f768ff5"]; // window:load event for Javascript to run after HTML
+    // because this Javascript is injected into the document head
+    window.addEventListener('load', () => {
+        // Javascript code to execute after DOM content
+
+        // full ZingChart schema can be found here:
+        // https://www.zingchart.com/docs/api/json-configuration/
+        var myConfig = {
+            type: 'wordcloud',
+            options: {
+                text: "{{clean_text}}",
+                minLength: 5,
+                maxItems: 40,
+                aspect: 'flow-center',
+                rotate: true,
+                colorType: 'palette',
+                palette: ['#0c4271', '#0a81ab'],
+
+                style: {
+                    fontFamily: 'Crete Round',
+                    hoverState: {
+                        backgroundColor: '#D32F2F',
+                        borderRadius: 2,
+                        fontColor: 'white'
+                    },
+                    tooltip: {
+                        text: '%text: %hits',
+                        visible: true,
+
+                        alpha: 0.9,
+                        backgroundColor: '#1976D2',
+                        borderRadius: 2,
+                        borderColor: 'none',
+                        fontColor: 'white',
+                        fontFamily: 'Georgia',
+                        textAlpha: 1
+                    }
+                }
+            },
+        };
+
+        zingchart.bind('myChart', 'label_click', (e) => {
+            console.log('hi', e);
+        });
+
+        zingchart.render({
+            id: 'myChart',
+            data: myConfig,
+            height: 250,
+            width: '100%'
+        });
+
+    });
+</script>
 
 </html>
