@@ -1,2 +1,4 @@
 punkt
-all-corpora
+stopwords
+words
+wordnet
