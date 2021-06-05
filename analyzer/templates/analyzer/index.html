@@ -75,25 +75,18 @@
                     </div>
                     <div class="row justifiy-content-md-center my-2">
                         <div class="col col-lg-6">
+                            {% if keywords %}
                             <div class="card">
                                 <div class="card-body">
-                                    {% if text %}
                                     <h5 class="card-title">Key Words/Phrases</h5>
                                     <p class="card-text">
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
-                                        <span class="badge rounded-pill bg-dark">Dark</span>
+                                        {% for k in keywords %}
+                                        <span class="badge rounded-pill bg-dark">{{k | title}}</span>
+                                        {% endfor %}
                                     </p>
-                                    {% endif %}
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                         <div class="col col-lg-6">
                             <div class="card">
