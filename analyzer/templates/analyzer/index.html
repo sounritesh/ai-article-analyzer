@@ -24,88 +24,27 @@
                     class="d-inline-block align-top" alt="">
                 <b>Article Analyzer</b>
             </a>
-            <form class="form pl-5" style="width: 70%;">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">URL: </span>
-                    </div>
-                    <input type="text" id=urlBar class="form-control" placeholder="" name="url" aria-label="Username"
-                        aria-describedby="basic-addon1">
-                </div>
-            </form>
-            <button class="btn btn-outline-dark my-2 my-sm-0 mx-2" id="analyseButton" type="submit">Analyse</button>
         </nav>
-
-        <!-- Main Content -->
-
         <div class="container my-4" id="analysedContent">
             <div class="row justify-content-md-center">
                 <div class="container my-4" id="analysedContent">
                     <div class="row justify-content-md-center">
-                        <div class="col col-lg-8">
-                            <div class="card">
-                                <!-- <div class="card-header">
-                                    Word Cloud
-                                </div> -->
-                                <div class="card-body">
-                                    <h5 class="card-title">Word Cloud</h5>
-                                    <p class="card-text" id="myChart">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col col-lg-4">
-                            <div class="row">
-                                <div class="card" style="height: 150px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Language</h5>
-                                        <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">{{language}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row my-3">
-                                <div class="card"  style="height: 150px;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Word Count</h5>
-                                        <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">{{word_count}}</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justifiy-content-md-center my-2">
-                        <div class="col col-lg-6">
-                            {% if keywords %}
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Key Words/Phrases</h5>
-                                    <p class="card-text">
-                                        {% for k in keywords %}
-                                        <span class="badge rounded-pill bg-dark">{{k | title}}</span>
-                                        {% endfor %}
-                                    </p>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-                        <div class="col col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    {% if text %}
-                                    <h5 class="card-title">Sentiment Analysis</h5>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justifiy-content-md-center my-4">
                         <div class="col col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    {% if text %}
-                                    <h5 class="card-title">Article Text</h5>
-                                    <p class="card-text">{{text}}</p>
-                                    {% endif %}
+                                    <h5 class="card-title">Enter URL</h5>
+                                    <p class="card-text">
+                                    <form class="form pl-5" style="width: 100%;">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">URL: </span>
+                                            </div>
+                                            <input type="text" id=urlBar class="form-control" placeholder="" name="url"
+                                                aria-label="Username" aria-describedby="basic-addon1">
+                                            <button class="btn btn-outline-dark" type="submit">Analyse</button>
+                                        </div>
+                                    </form>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -113,30 +52,105 @@
                 </div>
             </div>
         </div>
-    </div>
+
+        <div>
+            <div class="row justify-content-md-center">
+                OR
+            </div>
+        </div>
+
+        <div class="container my-4" id="analysedContent">
+            <div class="row justify-content-md-center">
+                <div class="container my-4" id="analysedContent">
+                    <div class="row justify-content-md-center">
+                        <div class="col col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Enter Text</h5>
+                                    <p class="card-text">
+                                    <form class="align-items-right">
+                                        <textarea class="form-control" name="text" id="text"
+                                            style="height: 200px;"></textarea>
+                                        <button class="btn btn-outline-dark mt-3" type="submit">Analyse</button>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+                <!-- Main Content -->
+                {% if word_count %}
+                <div class="container my-4" id="analysedContent">
+                    <div class="row justify-content-md-center">
+                        <div class="container my-4" id="analysedContent">
+                            <div class="row justify-content-md-center">
+                                <div class="col col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Word Cloud</h5>
+                                            <p class="card-text" id="myChart">
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justifiy-content-md-center mt-4">
+                                <div class="col col-lg-4">
+                                    {% if keywords %}
+                                    <div class="card" style="height: 100%;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Key Words/Phrases</h5>
+                                            <p class="card-text">
+                                                {% for k in keywords %}
+                                                <span class="badge rounded-pill bg-dark">{{k | title}}</span>
+                                                {% endfor %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col col-lg-4">
+                                    <div class="card" style="height: 100%;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Language</h5>
+                                            <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">
+                                                {{language}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="card" style="height: 100%;">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Word Count</h5>
+                                            <h2 class="card-text py-3" style="text-align: center;color: #0a81ab;">
+                                                {{word_count}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justifiy-content-md-center mt-4">
+                            <div class="col col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        {% if text %}
+                                        <h5 class="card-title">Article Text</h5>
+                                        <p class="card-text">{{text}}</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
 </body>
-
-<!-- <script>
-    var bar = document.getElementById('urlBar')
-    var button = document.getElementById('analyseButton')
-    var contentDiv = document.getElementById('analysedContent')
-
-    button.onclick = function () {
-        queryValue = bar.value
-        console.log(queryValue)
-
-        url = "{% url 'result' %}" + "?url=" + queryValue
-
-        var ajaxReq = new XMLHttpRequest()
-        ajaxReq.open('GET', url, 'FALSE')
-        ajaxReq.send()
-        ajaxReq.onreadystatechange = function () {
-            if (ajaxReq.readyState == 4 && ajaxReq.status == 200) {
-                contentDiv.innerHTML = ajaxReq.responseText
-            }
-        }
-    }
-</script> -->
 
 <!-- Word Cloud JS -->
 <script>

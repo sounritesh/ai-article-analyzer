@@ -23,13 +23,9 @@ def detect_language(text):
         'Turkish': ['turkish', 'tr']
     }
 
-    print("Models loaded successfully")
     X = vectorizer.transform([text]).toarray()
-    print("Sparse matix made")
     y = model.predict(X)
-    print("value predicted")
     result = encoder.inverse_transform(y)
-    print("value transformed")
     return language_dict[result[0]]
 
 def get_word_count(text):
