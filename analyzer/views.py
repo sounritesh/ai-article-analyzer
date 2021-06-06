@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .ml_helpers import *
 import json
-import re
 
 # Create your views here.
 def index_view(request):
