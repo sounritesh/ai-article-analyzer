@@ -1,1 +1,1 @@
-web: gunicorn ArticleInsights.wsgi
+web: gunicorn ArticleInsights.wsgi --log-file -
