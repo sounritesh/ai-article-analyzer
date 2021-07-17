@@ -4,7 +4,7 @@ from nltk.tokenize import regexp_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from yake import KeywordExtractor
-import pickle5 as pickle
+import pickle
 
 def detect_language(text):
     model = pickle.load(open('ml-models/language-detection/language_detection_model.sav', 'rb'))
