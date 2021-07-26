@@ -51,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.runserver_nostatic',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -83,10 +84,16 @@ WSGI_APPLICATION = 'ArticleInsights.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'article-db',
+        'NAME': 'd28o1olmhfer73',
+        'USER': 'fkanaeokqoaimn',
+        'PORT': '5432',
+        'HOST': 'ec2-52-45-183-77.compute-1.amazonaws.com',
+        'PASSWORD': '58c718e06da213ef0773c898f8d4156ffbfe8be6a0302809c7d17742e64766a8'
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -130,6 +137,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
