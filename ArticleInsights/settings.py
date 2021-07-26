@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-81p@2l-wkw_(d-t=a!o$8amxd^l)wa(n4k5sq2tk+by2c13c9t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'ai-article-analyzer.herokuapp.com', '127.0.0.1']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'analyzer',
 ]
 
@@ -51,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.runserver_nostatic',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -85,10 +85,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd28o1olmhfer73',
+        # 'NAME': 'article-db',
         'USER': 'fkanaeokqoaimn',
+        # 'USER': 'postgres',
         'PORT': '5432',
         'HOST': 'ec2-52-45-183-77.compute-1.amazonaws.com',
+        # 'HOST': 'localhost',
         'PASSWORD': '58c718e06da213ef0773c898f8d4156ffbfe8be6a0302809c7d17742e64766a8'
+        # 'PASSWORD': 'postgres'
     }
 }
 

@@ -32,6 +32,7 @@ def index_view(request):
             word_count = 0
             language = ""
             keywords = []
+            summary = ""
     
     context = {
         "text": text,
