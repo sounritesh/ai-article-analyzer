@@ -1,1 +1,1 @@
-web: gunicorn ArticleInsights.wsgi --log-file -
+web: newrelic-admin run-program gunicorn ArticleInsights.wsgi
