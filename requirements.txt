@@ -19,6 +19,7 @@ jieba3k==0.35.1
 joblib==1.0.1
 lxml==4.6.3
 networkx==2.5.1
+newrelic==6.4.4.161
 newspaper3k==0.2.8
 nltk==3.6.2
 numpy==1.20.3
